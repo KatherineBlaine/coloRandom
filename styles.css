@@ -1,0 +1,50 @@
+html {
+  height: 100vh;
+  width: 100vw;
+}
+
+body {
+  display: flex;
+}
+
+main {
+  width: 75vw;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-evenly;
+}
+
+.palette {
+  display: flex;
+  width: 75%;
+  justify-content: space-evenly;
+}
+
+.square {
+  height: 100px;
+  width: 100px;
+  background-color: aqua;
+  border: 1px solid black;
+}
+
+.nav-buttons {
+  display: flex;
+  width: 75%;
+
+}
+
+button {
+  width: 115px;
+  height: 40px;
+}
+
+.saved-palettes {
+  display: flex;
+  height: 100vh;
+  width: 25vw;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  border-left: 2px solid black;
+}
