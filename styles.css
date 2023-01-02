@@ -1,3 +1,7 @@
+* {
+  font-family:'Rubik', sans-serif;
+}
+
 html {
   height: 100vh;
   width: 100vw;
@@ -22,21 +26,39 @@ main {
 }
 
 .square {
-  height: 100px;
-  width: 100px;
-  background-color: aqua;
-  border: 1px solid black;
+  height: 150px;
+  width: 150px;
+  margin: 5px;
+  border: 3px solid black;
+}
+
+.hex {
+  text-align: center;
 }
 
 .nav-buttons {
   display: flex;
   width: 75%;
-
+  justify-content: space-evenly;
+  align-items: center;
 }
 
 button {
-  width: 115px;
-  height: 40px;
+  width: 150px;
+  height: 50px;
+  font-size: large;
+  box-shadow: 3px 3px rgb(56, 55, 55);
+  border: 2px solid black;
+  border-radius: 5px;
+}
+
+button:hover {
+  background-color: rgb(167, 165, 165);
+}
+
+button:active {
+  box-shadow: 1px 1px black;
+  transform:translateY(3px);
 }
 
 .saved-palettes {
@@ -46,5 +68,5 @@ button {
   flex-direction: column;
   justify-content: flex-start;
   align-items: center;
-  border-left: 2px solid black;
+  border-left: 3px solid black;
 }
