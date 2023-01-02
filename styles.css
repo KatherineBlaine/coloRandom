@@ -29,7 +29,6 @@ main {
   height: 150px;
   width: 150px;
   margin: 5px;
-  background-color: aqua;
   border: 3px solid black;
 }
 
@@ -48,6 +47,18 @@ button {
   width: 150px;
   height: 50px;
   font-size: large;
+  box-shadow: 3px 3px rgb(56, 55, 55);
+  border: 2px solid black;
+  border-radius: 5px;
+}
+
+button:hover {
+  background-color: rgb(167, 165, 165);
+}
+
+button:active {
+  box-shadow: 1px 1px black;
+  transform:translateY(3px);
 }
 
 .saved-palettes {
