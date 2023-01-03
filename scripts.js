@@ -36,4 +36,9 @@ class Palette {
       }
     }
   }
+
+  lockColor(color) {
+    this[color].locked = true;
+  }
+
 }
