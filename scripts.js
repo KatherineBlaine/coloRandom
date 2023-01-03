@@ -1,7 +1,9 @@
+// Data Model 👇
 var hexNum = ['A', 'B', 'C', 'D', 'E', 'F', '0', '1', '2', '3', '4', '5', '6', '7', '8', '9'];
 var currentPalette;
 var savedPalettes = [];
 
+// Global DOM variables 👇
 var square1 = document.getElementById('square1');
 var square2 = document.getElementById('square2');
 var square3 = document.getElementById('square3');
@@ -14,9 +16,11 @@ var hex3 = document.getElementById('hex3');
 var hex4 = document.getElementById('hex4');
 var hex5 = document.getElementById('hex5');
 
+// Global DOM button variables 👇
+var newBtn = document.getElementById('new-palette-btn');
+var saveBtn = document.getElementById('save-palette-btn');
 
-window.addEventListener('load', loadPalette);
-
+// Classes 👇
 class Color {
   constructor() {
     this.hex = getHex();
@@ -47,18 +51,46 @@ class Palette {
   }
 }
 
+// Event Listeners 👇
+window.addEventListener('load', loadPalette);
+newBtn.addEventListener('click', function() {
+  generateColors();
+  displayColors();
+})
+
+// Functions 👇
+function generateColors() {
+  currentPalette.changeColor();
+  displayColors();
+}
+
+
 function loadPalette() {
   currentPalette = new Palette;
+  displayColors();
+}
+
+function displayColors() {
   square1.style.backgroundColor = currentPalette.color1.hex;
   square2.style.backgroundColor = currentPalette.color2.hex;
   square3.style.backgroundColor = currentPalette.color3.hex;
   square4.style.backgroundColor = currentPalette.color4.hex;
   square5.style.backgroundColor = currentPalette.color5.hex;
-  hex1.innerText = `${currentPalette.color1.hex} 🔓`;
-  hex2.innerText = `${currentPalette.color2.hex} 🔓`;
-  hex3.innerText = `${currentPalette.color3.hex} 🔓`;
-  hex4.innerText = `${currentPalette.color4.hex} 🔓`;
-  hex5.innerText = `${currentPalette.color5.hex} 🔓`;
+  hex1.innerHTML = `${currentPalette.color1.hex} <span class="material-symbols-outlined">
+  lock_open
+  </span>`;
+  hex2.innerHTML = `${currentPalette.color2.hex} <span class="material-symbols-outlined">
+  lock_open
+  </span>`;
+  hex3.innerHTML = `${currentPalette.color3.hex} <span class="material-symbols-outlined">
+  lock_open
+  </span>`;
+  hex4.innerHTML = `${currentPalette.color4.hex} <span class="material-symbols-outlined">
+  lock_open
+  </span>`;
+  hex5.innerHTML = `${currentPalette.color5.hex} <span class="material-symbols-outlined">
+  lock_open
+  </span>`;
 }
 
 function getHex() {
@@ -72,3 +104,12 @@ function getHex() {
 function getRandNum(array) {
   return array[Math.floor(Math.random() * array.length)];
 }
+
+/* 
+LOCKED Icon 👇
+
+<span class="material-symbols-outlined">
+lock
+</span> 
+
+*/
