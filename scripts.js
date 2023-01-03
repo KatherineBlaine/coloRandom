@@ -16,6 +16,8 @@ var hex3 = document.getElementById('hex3');
 var hex4 = document.getElementById('hex4');
 var hex5 = document.getElementById('hex5');
 
+var savedPalettesSection = document.getElementById('saved-palettes')
+
 // Global DOM button variables 👇
 var newBtn = document.getElementById('new-palette-btn');
 var saveBtn = document.getElementById('save-palette-btn');
@@ -56,7 +58,8 @@ window.addEventListener('load', loadPalette);
 newBtn.addEventListener('click', function() {
   generateColors();
   displayColors();
-})
+});
+saveBtn.addEventListener('click', savePalette);
 
 // Functions 👇
 function generateColors() {
@@ -68,6 +71,25 @@ function generateColors() {
 function loadPalette() {
   currentPalette = new Palette;
   displayColors();
+}
+
+function createMiniPalette() {
+  savedPalettesSection.innerHTML += `
+  <section class="saved-mini-palette">
+    <section style="background-color: ${currentPalette.color1.hex};" class="mini-square" id="mini-square1"></section>
+    <section style="background-color: ${currentPalette.color2.hex};" class="mini-square" id="mini-square2"></section>
+    <section style="background-color: ${currentPalette.color3.hex};" class="mini-square" id="mini-square3"></section>
+    <section style="background-color: ${currentPalette.color4.hex};" class="mini-square" id="mini-square4"></section>
+    <section style="background-color: ${currentPalette.color5.hex};" class="mini-square" id="mini-square5"></section>
+    <span class="material-symbols-outlined trash">delete</span>
+  </section>
+  `
+}
+
+function savePalette() {
+  savedPalettes.push(currentPalette);
+  createMiniPalette();
+  loadPalette();
 }
 
 function displayColors() {
