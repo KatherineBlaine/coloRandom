@@ -5,7 +5,7 @@ function getRandNum(array) {
 }
 
 function getHex() {
-  var color = '';
+  var color = '#';
   for (var i = 0; i < 6; i++) {
     color += getRandNum(hexNum)
   }
@@ -14,11 +14,31 @@ function getHex() {
 
 class Color {
   constructor() {
-    this.hex = undefined;
+    this.hex = getHex();
     this.locked = false;
   }
 }
 
 class Palette {
+  constructor() {
+    this.id = Date.now();
+    this.color1 = new Color;
+    this.color2 = new Color;
+    this.color3 = new Color;
+    this.color4 = new Color;
+    this.color5 = new Color;
+  }
+
+  changeColor() {
+    for (var i = 1; i < 6; i++) {
+      if (!this[`color${i}`].locked) {
+        this[`color${i}`] = new Color;
+      }
+    }
+  }
+
+  lockColor(color) {
+    this[color].locked = true;
+  }
 
 }
