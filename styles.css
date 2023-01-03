@@ -30,6 +30,26 @@ main {
   width: 150px;
   margin: 5px;
   border: 3px solid black;
+  border-radius: 5px;
+}
+
+.saved-mini-palette {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.mini-square {
+  height: 50px;
+  width: 50px;
+  margin: 6px;
+  border: 2px solid black;
+  border-radius: 4px;
+}
+
+.trash {
+  font-size: 35px!important;
+  margin-left: 8px;
 }
 
 .hex {

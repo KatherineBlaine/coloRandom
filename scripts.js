@@ -56,7 +56,8 @@ window.addEventListener('load', loadPalette);
 newBtn.addEventListener('click', function() {
   generateColors();
   displayColors();
-})
+});
+saveBtn.addEventListener('click', savePalette);
 
 // Functions 👇
 function generateColors() {
@@ -68,6 +69,10 @@ function generateColors() {
 function loadPalette() {
   currentPalette = new Palette;
   displayColors();
+}
+
+function savePalette() {
+  
 }
 
 function displayColors() {
