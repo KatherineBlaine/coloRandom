@@ -1,16 +1,21 @@
-var hexNum = ['A', 'B', 'C', 'D', 'E', 'F', '0', '1', '2', '3', '4', '5', '6', '7', '8', '9']
+var hexNum = ['A', 'B', 'C', 'D', 'E', 'F', '0', '1', '2', '3', '4', '5', '6', '7', '8', '9'];
+var currentPalette;
+var savedPalettes = [];
 
-function getRandNum(array) {
-  return array[Math.floor(Math.random() * array.length)];
-}
+var square1 = document.getElementById('square1');
+var square2 = document.getElementById('square2');
+var square3 = document.getElementById('square3');
+var square4 = document.getElementById('square4');
+var square5 = document.getElementById('square5');
 
-function getHex() {
-  var color = '#';
-  for (var i = 0; i < 6; i++) {
-    color += getRandNum(hexNum)
-  }
-  return color;
-}
+var hex1 = document.getElementById('hex1');
+var hex2 = document.getElementById('hex2');
+var hex3 = document.getElementById('hex3');
+var hex4 = document.getElementById('hex4');
+var hex5 = document.getElementById('hex5');
+
+
+window.addEventListener('load', loadPalette);
 
 class Color {
   constructor() {
@@ -28,7 +33,7 @@ class Palette {
     this.color4 = new Color;
     this.color5 = new Color;
   }
-
+  
   changeColor() {
     for (var i = 1; i < 6; i++) {
       if (!this[`color${i}`].locked) {
@@ -36,9 +41,34 @@ class Palette {
       }
     }
   }
-
+  
   lockColor(color) {
     this[color].locked = true;
   }
+}
 
+function loadPalette() {
+  currentPalette = new Palette;
+  square1.style.backgroundColor = currentPalette.color1.hex;
+  square2.style.backgroundColor = currentPalette.color2.hex;
+  square3.style.backgroundColor = currentPalette.color3.hex;
+  square4.style.backgroundColor = currentPalette.color4.hex;
+  square5.style.backgroundColor = currentPalette.color5.hex;
+  hex1.innerText = `${currentPalette.color1.hex} 🔓`;
+  hex2.innerText = `${currentPalette.color2.hex} 🔓`;
+  hex3.innerText = `${currentPalette.color3.hex} 🔓`;
+  hex4.innerText = `${currentPalette.color4.hex} 🔓`;
+  hex5.innerText = `${currentPalette.color5.hex} 🔓`;
+}
+
+function getHex() {
+  var color = '#';
+  for (var i = 0; i < 6; i++) {
+    color += getRandNum(hexNum)
+  }
+  return color;
+}
+
+function getRandNum(array) {
+  return array[Math.floor(Math.random() * array.length)];
 }
