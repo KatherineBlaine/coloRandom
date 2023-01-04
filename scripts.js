@@ -4,11 +4,11 @@ var currentPalette;
 var savedPalettes = [];
 
 // Global DOM variables 👇
-var square1 = document.getElementById('square1');
-var square2 = document.getElementById('square2');
-var square3 = document.getElementById('square3');
-var square4 = document.getElementById('square4');
-var square5 = document.getElementById('square5');
+var square1 = document.getElementById('color1');
+var square2 = document.getElementById('color2');
+var square3 = document.getElementById('color3');
+var square4 = document.getElementById('color4');
+var square5 = document.getElementById('color5');
 
 var hex1 = document.getElementById('hex1');
 var hex2 = document.getElementById('hex2');
@@ -17,6 +17,7 @@ var hex4 = document.getElementById('hex4');
 var hex5 = document.getElementById('hex5');
 
 var savedPalettesSection = document.getElementById('saved-palettes')
+var paletteSection = document.getElementById('palette');
 
 // Global DOM button variables 👇
 var newBtn = document.getElementById('new-palette-btn');
@@ -60,8 +61,30 @@ newBtn.addEventListener('click', function() {
   displayColors();
 });
 saveBtn.addEventListener('click', savePalette);
+paletteSection.addEventListener('click', function() {
+  getLockId(event)
+})
+
+
+
+// We need to listen for a click on the color box
+// We need to access the event target and pull the ID from the event target
+// Once it is clicked we need to change the property value locked to equal true
+// Next we need the icon to be changed to the locked icon
 
 // Functions 👇
+
+function getLockId(event) {
+  var boxId = event.target
+  for (var i = 1; i < 6; i++) {
+    console.log(currentPalette[`color${i}`])
+    console.log(boxId)
+    if (currentPalette[`color${i}`] === boxId) {
+      currentPalette.lockColor(`color${i}`)
+    }
+  }
+}
+
 function generateColors() {
   currentPalette.changeColor();
   displayColors();
