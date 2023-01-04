@@ -16,6 +16,8 @@ var hex3 = document.getElementById('hex3');
 var hex4 = document.getElementById('hex4');
 var hex5 = document.getElementById('hex5');
 
+var unlockIcons = document.querySelectorAll('.unlock-icon');
+
 var savedPalettesSection = document.getElementById('saved-palettes');
 var paletteSection = document.getElementById('palette');
 
@@ -52,6 +54,7 @@ class Palette {
   lockColor(color) {
     this[color].locked = true;
   }
+
   unlockColor(color) {
     this[color].locked = false;
   }
@@ -66,27 +69,36 @@ newBtn.addEventListener('click', function() {
 saveBtn.addEventListener('click', savePalette);
 paletteSection.addEventListener('click', function() {
   toggleLock(event);
-})
+});
 
 // Functions 👇
+
 function toggleLock(event) {
   var boxId = event.target.id;
-  var palKeys = Object.keys(currentPalette);
   var palVals = Object.values(currentPalette);
-  for (var i = 1; i < palKeys.length; i++) {
+  var palKeys = Object.keys(currentPalette);
+  var targetLock = event.target.nextElementSibling.children[1];
+  for (var i = 1; i < palVals.length; i++) {
     if (palKeys[i] === boxId && !palVals[i].locked) {
-      var hexVal = palVals[i].hex;
-      currentPalette.lockColor(`color${i}`);
-      event.target.nextElementSibling.innerHTML = `${hexVal}<span class="material-symbols-outlined">lock</span>`;
+      changeIcon(targetLock);
+      currentPalette.lockColor(palKeys[i]);
       break;
     } else if (palKeys[i] === boxId && palVals[i].locked) {
-      var hexVal = palVals[i].hex;
-      currentPalette.unlockColor(`color${i}`);
-      event.target.nextElementSibling.innerHTML = `${hexVal}<span class="material-symbols-outlined">lock_open</span>`;
+      changeIcon(targetLock);
+      currentPalette.unlockColor(palKeys[i]);
       break;
     }
   }
 }
+
+function changeIcon(icon) {
+  if (icon.innerText === 'lock_open') {
+    icon.innerText = `lock`;
+  } else {
+    icon.innerText = 'lock_open';
+  }
+}
+
 
 function generateColors() {
   currentPalette.changeColor();
@@ -96,6 +108,9 @@ function generateColors() {
 function loadPalette() {
   currentPalette = new Palette;
   displayColors();
+  for (var i = 0; i < unlockIcons.length; i++) {
+    unlockIcons[i].innerText = 'lock_open';
+  }
 }
 
 function createMiniPalette() {
@@ -109,12 +124,14 @@ function createMiniPalette() {
     <span class="material-symbols-outlined trash">delete</span>
   </section>
   `;
+  `;
 }
 
 function savePalette() {
   savedPalettes.push(currentPalette);
   createMiniPalette();
   loadPalette();
+
 }
 
 function displayColors() {
@@ -123,16 +140,17 @@ function displayColors() {
   square3.style.backgroundColor = currentPalette.color3.hex;
   square4.style.backgroundColor = currentPalette.color4.hex;
   square5.style.backgroundColor = currentPalette.color5.hex;
-  hex1.innerHTML = `${currentPalette.color1.hex} <span class="material-symbols-outlined">lock_open</span>`;
-  hex2.innerHTML = `${currentPalette.color2.hex} <span class="material-symbols-outlined">lock_open</span>`;
-  hex3.innerHTML = `${currentPalette.color3.hex} <span class="material-symbols-outlined">lock_open</span>`;
-  hex4.innerHTML = `${currentPalette.color4.hex} <span class="material-symbols-outlined">lock_open</span>`;
-  hex5.innerHTML = `${currentPalette.color5.hex} <span class="material-symbols-outlined">lock_open</span>`;
+  hex1.innerText = `${currentPalette.color1.hex}`;
+  hex2.innerText = `${currentPalette.color2.hex}`;
+  hex3.innerText = `${currentPalette.color3.hex}`;
+  hex4.innerText = `${currentPalette.color4.hex}`;
+  hex5.innerText = `${currentPalette.color5.hex}`;
 }
 
 function getHex() {
   var color = '#';
   for (var i = 0; i < 6; i++) {
+    color += getRandNum(hexNum);
     color += getRandNum(hexNum);
   }
   return color;
@@ -141,14 +159,3 @@ function getHex() {
 function getRandNum(array) {
   return array[Math.floor(Math.random() * array.length)];
 }
-
-/* 
-LOCKED Icon 👇
-
-<span class="material-symbols-outlined">
-lock
-</span> 
-
-*/
-
-;
