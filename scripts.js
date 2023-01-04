@@ -105,7 +105,6 @@ function generateColors() {
   displayColors();
 }
 
-
 function loadPalette() {
   currentPalette = new Palette;
   displayColors();
@@ -124,6 +123,7 @@ function createMiniPalette() {
     <section style="background-color: ${currentPalette.color5.hex};" class="mini-square" id="mini-square5"></section>
     <span class="material-symbols-outlined trash">delete</span>
   </section>
+  `;
   `;
 }
 
@@ -150,6 +150,7 @@ function displayColors() {
 function getHex() {
   var color = '#';
   for (var i = 0; i < 6; i++) {
+    color += getRandNum(hexNum);
     color += getRandNum(hexNum);
   }
   return color;
