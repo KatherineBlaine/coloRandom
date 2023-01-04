@@ -52,6 +52,9 @@ class Palette {
   lockColor(color) {
     this[color].locked = true;
   }
+  unlockColor(color) {
+    this[color].locked = false;
+  }
 }
 
 // Event Listeners 👇
@@ -62,25 +65,25 @@ newBtn.addEventListener('click', function() {
 });
 saveBtn.addEventListener('click', savePalette);
 paletteSection.addEventListener('click', function() {
-  getLockId(event)
+  lockColor(event)
 })
 
-
-
-// We need to listen for a click on the color box
-// We need to access the event target and pull the ID from the event target
-// Once it is clicked we need to change the property value locked to equal true
-// Next we need the icon to be changed to the locked icon
-
 // Functions 👇
-
-function getLockId(event) {
-  var boxId = event.target
-  for (var i = 1; i < 6; i++) {
-    console.log(currentPalette[`color${i}`])
-    console.log(boxId)
-    if (currentPalette[`color${i}`] === boxId) {
-      currentPalette.lockColor(`color${i}`)
+function lockColor(event) {
+  var boxId = event.target.id;
+  var palKeys = Object.keys(currentPalette);
+  var palVals = Object.values(currentPalette);
+  for (var i = 1; i < palKeys.length; i++) {
+    if (palKeys[i] === boxId && !palVals[i].locked) {
+      var hexVal = palVals[i].hex;
+      currentPalette.lockColor(`color${i}`);
+      event.target.nextElementSibling.innerHTML = `${hexVal}<span class="material-symbols-outlined">lock</span>`;
+      return;
+    } else if (palKeys[i] === boxId && palVals[i].locked) {
+      var hexVal = palVals[i].hex;
+      currentPalette.unlockColor(`color${i}`);
+      event.target.nextElementSibling.innerHTML = `${hexVal}<span class="material-symbols-outlined">lock_open</span>`;
+      return;
     }
   }
 }
@@ -121,21 +124,11 @@ function displayColors() {
   square3.style.backgroundColor = currentPalette.color3.hex;
   square4.style.backgroundColor = currentPalette.color4.hex;
   square5.style.backgroundColor = currentPalette.color5.hex;
-  hex1.innerHTML = `${currentPalette.color1.hex} <span class="material-symbols-outlined">
-  lock_open
-  </span>`;
-  hex2.innerHTML = `${currentPalette.color2.hex} <span class="material-symbols-outlined">
-  lock_open
-  </span>`;
-  hex3.innerHTML = `${currentPalette.color3.hex} <span class="material-symbols-outlined">
-  lock_open
-  </span>`;
-  hex4.innerHTML = `${currentPalette.color4.hex} <span class="material-symbols-outlined">
-  lock_open
-  </span>`;
-  hex5.innerHTML = `${currentPalette.color5.hex} <span class="material-symbols-outlined">
-  lock_open
-  </span>`;
+  hex1.innerHTML = `${currentPalette.color1.hex} <span class="material-symbols-outlined">lock_open</span>`;
+  hex2.innerHTML = `${currentPalette.color2.hex} <span class="material-symbols-outlined">lock_open</span>`;
+  hex3.innerHTML = `${currentPalette.color3.hex} <span class="material-symbols-outlined">lock_open</span>`;
+  hex4.innerHTML = `${currentPalette.color4.hex} <span class="material-symbols-outlined">lock_open</span>`;
+  hex5.innerHTML = `${currentPalette.color5.hex} <span class="material-symbols-outlined">lock_open</span>`;
 }
 
 function getHex() {
