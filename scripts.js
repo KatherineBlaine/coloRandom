@@ -124,7 +124,6 @@ function createMiniPalette() {
     <span class="material-symbols-outlined trash">delete</span>
   </section>
   `;
-  `;
 }
 
 function savePalette() {
@@ -150,7 +149,6 @@ function displayColors() {
 function getHex() {
   var color = '#';
   for (var i = 0; i < 6; i++) {
-    color += getRandNum(hexNum);
     color += getRandNum(hexNum);
   }
   return color;
