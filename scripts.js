@@ -70,6 +70,9 @@ saveBtn.addEventListener('click', savePalette);
 paletteSection.addEventListener('click', function() {
   toggleLock(event);
 });
+savedPalettesSection.addEventListener('click', function() {
+  deleteSavedPalette(event);
+});
 
 // Functions 👇
 
@@ -121,7 +124,7 @@ function createMiniPalette() {
     <section style="background-color: ${currentPalette.color3.hex};" class="mini-square" id="mini-square3"></section>
     <section style="background-color: ${currentPalette.color4.hex};" class="mini-square" id="mini-square4"></section>
     <section style="background-color: ${currentPalette.color5.hex};" class="mini-square" id="mini-square5"></section>
-    <span class="material-symbols-outlined trash">delete</span>
+    <span class="material-symbols-outlined trash" id="${currentPalette.id}">delete</span>
   </section>
   `;
 }
@@ -130,7 +133,15 @@ function savePalette() {
   savedPalettes.push(currentPalette);
   createMiniPalette();
   loadPalette();
+}
 
+function deleteSavedPalette(event) {
+  for (var i = 0; i < savedPalettes.length; i++) {
+    if (event.target.id === savedPalettes[i].id.toString()) {
+      event.target.parentNode.remove();
+      savedPalettes.splice(i, 1);
+    }
+  }
 }
 
 function displayColors() {
