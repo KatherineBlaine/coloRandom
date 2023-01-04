@@ -16,7 +16,7 @@ var hex3 = document.getElementById('hex3');
 var hex4 = document.getElementById('hex4');
 var hex5 = document.getElementById('hex5');
 
-var savedPalettesSection = document.getElementById('saved-palettes')
+var savedPalettesSection = document.getElementById('saved-palettes');
 var paletteSection = document.getElementById('palette');
 
 // Global DOM button variables 👇
@@ -65,11 +65,11 @@ newBtn.addEventListener('click', function() {
 });
 saveBtn.addEventListener('click', savePalette);
 paletteSection.addEventListener('click', function() {
-  lockColor(event)
+  toggleLock(event);
 })
 
 // Functions 👇
-function lockColor(event) {
+function toggleLock(event) {
   var boxId = event.target.id;
   var palKeys = Object.keys(currentPalette);
   var palVals = Object.values(currentPalette);
@@ -78,12 +78,12 @@ function lockColor(event) {
       var hexVal = palVals[i].hex;
       currentPalette.lockColor(`color${i}`);
       event.target.nextElementSibling.innerHTML = `${hexVal}<span class="material-symbols-outlined">lock</span>`;
-      return;
+      break;
     } else if (palKeys[i] === boxId && palVals[i].locked) {
       var hexVal = palVals[i].hex;
       currentPalette.unlockColor(`color${i}`);
       event.target.nextElementSibling.innerHTML = `${hexVal}<span class="material-symbols-outlined">lock_open</span>`;
-      return;
+      break;
     }
   }
 }
@@ -92,7 +92,6 @@ function generateColors() {
   currentPalette.changeColor();
   displayColors();
 }
-
 
 function loadPalette() {
   currentPalette = new Palette;
@@ -109,7 +108,7 @@ function createMiniPalette() {
     <section style="background-color: ${currentPalette.color5.hex};" class="mini-square" id="mini-square5"></section>
     <span class="material-symbols-outlined trash">delete</span>
   </section>
-  `
+  `;
 }
 
 function savePalette() {
@@ -134,7 +133,7 @@ function displayColors() {
 function getHex() {
   var color = '#';
   for (var i = 0; i < 6; i++) {
-    color += getRandNum(hexNum)
+    color += getRandNum(hexNum);
   }
   return color;
 }
@@ -151,3 +150,5 @@ lock
 </span> 
 
 */
+
+;
