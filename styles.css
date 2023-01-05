@@ -112,6 +112,12 @@ button:active {
   transform:translateY(3px);
 }
 
+.trash,
+.square,
+button {
+  cursor: pointer;
+}
+
 .saved-palettes {
   display: flex;
   height: 100vh;

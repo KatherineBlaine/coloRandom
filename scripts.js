@@ -28,7 +28,27 @@ var saveBtn = document.getElementById('savePaletteBtn');
 // Classes 👇
 class Color {
   constructor() {
-    this.hex = getHex();
+    this.hex = this.getHex();
+    this.locked = false;
+  }
+
+  getHex() {
+    var color = '#';
+    for (var i = 0; i < 6; i++) {
+      color += this.getRandNum(hexNum);
+    }
+    return color;
+  }
+  
+  getRandNum(array) {
+    return array[Math.floor(Math.random() * array.length)];
+  }
+
+  lock() {
+    this.locked = true;
+  }
+
+  unlock() {
     this.locked = false;
   }
 }
@@ -51,12 +71,12 @@ class Palette {
     }
   }
   
-  lockColor(color) {
-    this[color].locked = true;
-  }
-
-  unlockColor(color) {
-    this[color].locked = false;
+  switchLocked(color) {
+    if (this[color].locked) {
+      this[color].unlock();
+    } else if (!this[color].locked) {
+      this[color].lock();
+    }
   }
 }
 
@@ -83,11 +103,11 @@ function toggleLock(event) {
   for (var i = 1; i < palVals.length; i++) {
     if (palKeys[i] === boxId && !palVals[i].locked) {
       changeIcon(targetLock);
-      currentPalette.lockColor(palKeys[i]);
+      currentPalette.switchLocked(palKeys[i]);
       break;
     } else if (palKeys[i] === boxId && palVals[i].locked) {
       changeIcon(targetLock);
-      currentPalette.unlockColor(palKeys[i]);
+      currentPalette.switchLocked(palKeys[i]);
       break;
     }
   }
@@ -154,16 +174,4 @@ function displayColors() {
   hex3.innerText = `${currentPalette.color3.hex}`;
   hex4.innerText = `${currentPalette.color4.hex}`;
   hex5.innerText = `${currentPalette.color5.hex}`;
-}
-
-function getHex() {
-  var color = '#';
-  for (var i = 0; i < 6; i++) {
-    color += getRandNum(hexNum);
-  }
-  return color;
-}
-
-function getRandNum(array) {
-  return array[Math.floor(Math.random() * array.length)];
 }
