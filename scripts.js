@@ -95,6 +95,32 @@ savedPalettesSection.addEventListener('click', function() {
 });
 
 // Functions 👇
+function displayColors() {
+  square1.style.backgroundColor = currentPalette.color1.hex;
+  square2.style.backgroundColor = currentPalette.color2.hex;
+  square3.style.backgroundColor = currentPalette.color3.hex;
+  square4.style.backgroundColor = currentPalette.color4.hex;
+  square5.style.backgroundColor = currentPalette.color5.hex;
+  hex1.innerText = `${currentPalette.color1.hex}`;
+  hex2.innerText = `${currentPalette.color2.hex}`;
+  hex3.innerText = `${currentPalette.color3.hex}`;
+  hex4.innerText = `${currentPalette.color4.hex}`;
+  hex5.innerText = `${currentPalette.color5.hex}`;
+}
+
+function generateColors() {
+  currentPalette.changeColor();
+  displayColors();
+}
+
+function loadPalette() {
+  currentPalette = new Palette;
+  displayColors();
+  for (var i = 0; i < unlockIcons.length; i++) {
+    unlockIcons[i].innerText = 'lock_open';
+  }
+}
+
 function toggleLock(event) {
   var boxId = event.target.id;
   var palVals = Object.values(currentPalette);
@@ -121,57 +147,29 @@ function changeIcon(icon) {
   }
 }
 
-
-function generateColors() {
-  currentPalette.changeColor();
-  displayColors();
-}
-
-function loadPalette() {
-  currentPalette = new Palette;
-  displayColors();
-  for (var i = 0; i < unlockIcons.length; i++) {
-    unlockIcons[i].innerText = 'lock_open';
-  }
-}
-
-function createMiniPalette() {
-  savedPalettesSection.innerHTML += `
-  <section class="saved-mini-palette">
-    <section style="background-color: ${currentPalette.color1.hex};" class="mini-square"></section>
-    <section style="background-color: ${currentPalette.color2.hex};" class="mini-square"></section>
-    <section style="background-color: ${currentPalette.color3.hex};" class="mini-square"></section>
-    <section style="background-color: ${currentPalette.color4.hex};" class="mini-square"></section>
-    <section style="background-color: ${currentPalette.color5.hex};" class="mini-square"></section>
-    <span class="material-symbols-outlined trash" id="${currentPalette.id}">delete</span>
-  </section>
-  `;
-}
-
 function savePalette() {
   savedPalettes.push(currentPalette);
   createMiniPalette();
   loadPalette();
 }
 
+function createMiniPalette() {
+  savedPalettesSection.innerHTML += 
+  `<section class="saved-mini-palette">
+    <section style="background-color: ${currentPalette.color1.hex};" class="mini-square"></section>
+    <section style="background-color: ${currentPalette.color2.hex};" class="mini-square"></section>
+    <section style="background-color: ${currentPalette.color3.hex};" class="mini-square"></section>
+    <section style="background-color: ${currentPalette.color4.hex};" class="mini-square"></section>
+    <section style="background-color: ${currentPalette.color5.hex};" class="mini-square"></section>
+    <span class="material-symbols-outlined trash" id="${currentPalette.id}">delete</span>
+  </section>`;
+}
+
 function deleteSavedPalette(event) {
   for (var i = 0; i < savedPalettes.length; i++) {
     if (event.target.id === savedPalettes[i].id.toString() && window.confirm('Are you sure you want to delete this palette?')) {
-      event.target.parentNode.remove();
       savedPalettes.splice(i, 1);
+      event.target.parentNode.remove();
     }
   }
-}
-
-function displayColors() {
-  square1.style.backgroundColor = currentPalette.color1.hex;
-  square2.style.backgroundColor = currentPalette.color2.hex;
-  square3.style.backgroundColor = currentPalette.color3.hex;
-  square4.style.backgroundColor = currentPalette.color4.hex;
-  square5.style.backgroundColor = currentPalette.color5.hex;
-  hex1.innerText = `${currentPalette.color1.hex}`;
-  hex2.innerText = `${currentPalette.color2.hex}`;
-  hex3.innerText = `${currentPalette.color3.hex}`;
-  hex4.innerText = `${currentPalette.color4.hex}`;
-  hex5.innerText = `${currentPalette.color5.hex}`;
 }
