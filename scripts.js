@@ -71,7 +71,7 @@ paletteSection.addEventListener('click', function() {
   toggleLock(event);
 });
 savedPalettesSection.addEventListener('click', function() {
-  deleteSavedPalette(event);
+    deleteSavedPalette(event);
 });
 
 // Functions 👇
@@ -137,7 +137,7 @@ function savePalette() {
 
 function deleteSavedPalette(event) {
   for (var i = 0; i < savedPalettes.length; i++) {
-    if (event.target.id === savedPalettes[i].id.toString()) {
+    if (event.target.id === savedPalettes[i].id.toString() && window.confirm('Are you sure you want to delte this palette?')) {
       event.target.parentNode.remove();
       savedPalettes.splice(i, 1);
     }
