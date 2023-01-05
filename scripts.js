@@ -16,14 +16,14 @@ var hex3 = document.getElementById('hex3');
 var hex4 = document.getElementById('hex4');
 var hex5 = document.getElementById('hex5');
 
-var unlockIcons = document.querySelectorAll('.unlock-icon');
+var unlockIcons = document.querySelectorAll('.js-unlock-icon');
 
-var savedPalettesSection = document.getElementById('saved-palettes');
+var savedPalettesSection = document.getElementById('savedPalettes');
 var paletteSection = document.getElementById('palette');
 
 // Global DOM button variables 👇
-var newBtn = document.getElementById('new-palette-btn');
-var saveBtn = document.getElementById('save-palette-btn');
+var newBtn = document.getElementById('newPaletteBtn');
+var saveBtn = document.getElementById('savePaletteBtn');
 
 // Classes 👇
 class Color {
@@ -71,11 +71,10 @@ paletteSection.addEventListener('click', function() {
   toggleLock(event);
 });
 savedPalettesSection.addEventListener('click', function() {
-    deleteSavedPalette(event);
+  deleteSavedPalette(event);
 });
 
 // Functions 👇
-
 function toggleLock(event) {
   var boxId = event.target.id;
   var palVals = Object.values(currentPalette);
@@ -119,11 +118,11 @@ function loadPalette() {
 function createMiniPalette() {
   savedPalettesSection.innerHTML += `
   <section class="saved-mini-palette">
-    <section style="background-color: ${currentPalette.color1.hex};" class="mini-square" id="mini-square1"></section>
-    <section style="background-color: ${currentPalette.color2.hex};" class="mini-square" id="mini-square2"></section>
-    <section style="background-color: ${currentPalette.color3.hex};" class="mini-square" id="mini-square3"></section>
-    <section style="background-color: ${currentPalette.color4.hex};" class="mini-square" id="mini-square4"></section>
-    <section style="background-color: ${currentPalette.color5.hex};" class="mini-square" id="mini-square5"></section>
+    <section style="background-color: ${currentPalette.color1.hex};" class="mini-square"></section>
+    <section style="background-color: ${currentPalette.color2.hex};" class="mini-square"></section>
+    <section style="background-color: ${currentPalette.color3.hex};" class="mini-square"></section>
+    <section style="background-color: ${currentPalette.color4.hex};" class="mini-square"></section>
+    <section style="background-color: ${currentPalette.color5.hex};" class="mini-square"></section>
     <span class="material-symbols-outlined trash" id="${currentPalette.id}">delete</span>
   </section>
   `;
