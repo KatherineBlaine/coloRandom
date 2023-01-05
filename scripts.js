@@ -71,7 +71,7 @@ paletteSection.addEventListener('click', function() {
   toggleLock(event);
 });
 savedPalettesSection.addEventListener('click', function() {
-    deleteSavedPalette(event);
+  deleteSavedPalette(event);
 });
 
 // Functions 👇
