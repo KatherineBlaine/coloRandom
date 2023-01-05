@@ -16,14 +16,14 @@ var hex3 = document.getElementById('hex3');
 var hex4 = document.getElementById('hex4');
 var hex5 = document.getElementById('hex5');
 
-var unlockIcons = document.querySelectorAll('.unlock-icon');
+var unlockIcons = document.querySelectorAll('.js-unlock-icon');
 
-var savedPalettesSection = document.getElementById('saved-palettes');
+var savedPalettesSection = document.getElementById('savedPalettes');
 var paletteSection = document.getElementById('palette');
 
 // Global DOM button variables 👇
-var newBtn = document.getElementById('new-palette-btn');
-var saveBtn = document.getElementById('save-palette-btn');
+var newBtn = document.getElementById('newPaletteBtn');
+var saveBtn = document.getElementById('savePaletteBtn');
 
 // Classes 👇
 class Color {
