@@ -14,7 +14,8 @@ ColoRandom is an application that allows the user to generate new, random color 
 
 ## App Preview
 [//]: <>
-Coming soon to Blu-Ray and DVD
+![ColoRandom App Preview](https://media.giphy.com/media/YdLUitmrBiHLbHTKUd/giphy.gif)
+<!-- Coming soon to Blu-Ray and DVD -->
 
 ## Context
 [//]: <>
@@ -43,4 +44,24 @@ The project was received 1/2/2022 and the base requirements were completed by 1/
 
 ## Wins & Challenges
 [//]: <>
-All win no challenge
+Wins:
+- We successfully applied event delegation with a strong understanding of the capturing, targeting, and bubbling phases of event listening so that we could create functional event listeners for dynamic elements. We used this process to create functional icon buttons that lock and unlock colors and delete palettes from the saved palette section.
+
+- Throughout this process we were able to work as a cohesive team with our git workflow. We effectively divvied up the work and all contributed with our commits, merges and reviews.  
+
+- We immediately started our project with the data model in mind and we ensured that changes in the DOM always reflected changes in the data model. For example, when the user clicks the Save Palette button, the current instance of Palette is pushed into the savedPalettes array before it is displayed in the Saved Palettes section.
+
+- We structured our classes with descriptive class properties and methods so that we could efficiently reference and compare these values within our functions. For example, the way we designed our classes allowed us to access the keys and values of specific palettes and call our class methods to change the hex values of the displayed palette randomly and toggle the lock icon.
+
+- While writing code we kept Developer readability in mind. We refactored parts of our code in order for easier understanding and reorganized the placement to be intuitive and understandable at a quick glance.
+
+Challenges:
+- We were challenged with some CSS styling aspects throughout the project but most specifically when it came to the border between our main section and saved color palettes. It took us quite a while to find the CSS code that could allow the border to extend down with the increased number of palettes past the origonal dimensions of the page.  
+
+- We found it challenging using Google's Material Icons. Specifically, we found it challenging using more than one symbol and having it styled differently from another symbol. Because all the symbols share the material-symbols-outlined class, it was difficult finding correct property syntax to adjust the symbol's fill value.
+
+- Being able to implement the full functionality to lock/unlock a color was a challenge. The complexity of this problem was related to how our HTML was structured and the properties inherent to those elements, our JS Classes, and where the event was ultimately being triggered. There were two pieces of functionality that we aimed to implement on this event.
+  - First, we needed to be able to invoke a method within the object we were targeting. We accomplished this by looping through our current colors (an array of object values) and comparing the ID of the target with each object's Key, then locking/unlocking that object by invoking the appropriate function within that object.
+  - Second, we needed to be able to change the icon of the event target. We accomplished this by using a simple conditional to adjust the inner text of our icon span to toggle between the locked and unlocked icon.
+
+
