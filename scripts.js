@@ -127,11 +127,7 @@ function toggleLock(event) {
   var palKeys = Object.keys(currentPalette);
   var targetLock = event.target.nextElementSibling.children[1];
   for (var i = 1; i < palVals.length; i++) {
-    if (palKeys[i] === boxId && !palVals[i].locked) {
-      changeIcon(targetLock);
-      currentPalette.switchLocked(palKeys[i]);
-      break;
-    } else if (palKeys[i] === boxId && palVals[i].locked) {
+    if (palKeys[i] === boxId) {
       changeIcon(targetLock);
       currentPalette.switchLocked(palKeys[i]);
       break;
