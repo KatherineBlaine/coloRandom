@@ -123,10 +123,9 @@ function loadPalette() {
 
 function toggleLock(event) {
   var boxId = event.target.id;
-  var palVals = Object.values(currentPalette);
   var palKeys = Object.keys(currentPalette);
   var targetLock = event.target.nextElementSibling.children[1];
-  for (var i = 1; i < palVals.length; i++) {
+  for (var i = 1; i < palKeys.length; i++) {
     if (palKeys[i] === boxId) {
       changeIcon(targetLock);
       currentPalette.switchLocked(palKeys[i]);
