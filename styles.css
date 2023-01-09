@@ -86,10 +86,11 @@ button {
 }
 
 button:hover {
-  background-color: rgb(167, 165, 165);
+  background-color: #a0b2e8ad;
 }
 
 button:active {
+  background-color: #a0b2e8;
   box-shadow: 1px 1px black;
   transform:translateY(3px);
 }
